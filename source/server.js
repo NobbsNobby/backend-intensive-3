@@ -10,5 +10,7 @@ app.use(express.json({ limit: '10kb' }));
 
 // Routers
 app.use('/users', routers.users);
+app.use('/classes', routers.classes);
+app.use('/lessons', routers.lessons);
 
 export { app };
