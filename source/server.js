@@ -1,6 +1,5 @@
 // Core
 import express from 'express';
-
 //Routers
 import * as routers from './routers';
 

@@ -1,4 +1,4 @@
-export const getHash = (req, res) => {
+export const getByHash = (req, res) => {
     try {
         res.status(200).json({
             data: {},
@@ -10,7 +10,7 @@ export const getHash = (req, res) => {
     }
 };
 
-export const putHash = (req, res) => {
+export const putByHash = (req, res) => {
     try {
         res.status(200).json({
             hash: '',
@@ -22,7 +22,7 @@ export const putHash = (req, res) => {
     }
 };
 
-export const deleteHash = (req, res) => {
+export const deleteByHash = (req, res) => {
     try {
         res.sendStatus(204);
     } catch (error) {

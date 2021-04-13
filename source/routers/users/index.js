@@ -1,14 +1,14 @@
 import express from 'express';
 import {get, post} from './handlers';
-import {getHash, putHash, deleteHash} from './hash';
+import {getByHash, putByHash, deleteByHash} from './hash';
 
 const router = express.Router();
 
 router.get('/', get);
 router.post('/', post);
 
-router.get('/:userHash', getHash);
-router.put('/:userHash', putHash);
-router.delete('/:userHash', deleteHash);
+router.get('/:userHash', getByHash);
+router.put('/:userHash', putByHash);
+router.delete('/:userHash', deleteByHash);
 
 export {router as users};
