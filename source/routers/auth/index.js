@@ -7,7 +7,7 @@ import { limiter, authMiddleware } from '../../utils';
 
 export const router = express.Router();
 
-router.post('/login', [ authMiddleware(process.env.PASSWORD), limiter(5, 60 * 1000) ], login);
+router.post('/login', [ limiter(5, 60 * 1000), authMiddleware(process.env.PASSWORD) ], login);
 router.post('/logout', [ limiter(5, 60 * 1000) ], logout);
 
 export { router as auth };
