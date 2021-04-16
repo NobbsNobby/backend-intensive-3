@@ -15,7 +15,11 @@ export const validator = (schema) => (req, res, next) => {
         return next();
     }
 
-    const errors = validate.errors.map(({ message }) => message).join(', ');
+    // eslint-disable-next-line no-console
+    console.log(
+        validate.errors,
+    );
+    const errors = validate.errors.map(({ dataPath, message }) => `${dataPath.slice(1)} ${message}`).join(', ');
 
     res.status(400).json({ message: errors });
 };
