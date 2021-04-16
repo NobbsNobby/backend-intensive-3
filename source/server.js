@@ -1,11 +1,11 @@
 // Core
 import express from 'express';
-//Routers
+import bodyParser from 'body-parser';
+// Routers
 import * as routers from './routers';
 
 const app = express();
-
-app.use(express.json({ limit: '10kb' }));
+app.use(bodyParser.json({limit: '10kb'}));
 
 // Routers
 app.use('/users', routers.users);

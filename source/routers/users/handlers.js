@@ -12,9 +12,7 @@ export const get = (req, res) => {
 
 export const post = (req, res) => {
     try {
-        res.status(201).json({
-            hash: '',
-        });
+        res.status(201).send('User created');
     } catch (error) {
         res.status(400).json({
             message: error.message,

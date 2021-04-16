@@ -1,11 +1,16 @@
 import express from 'express';
 import {get, post} from './handlers';
 import {getByHash, putByHash, deleteByHash} from './hash';
+//utils
+import {limiter, validator} from '../../utils';
+// Schemas
+import {createUser} from '../../schemas';
+
 
 const router = express.Router();
 
-router.get('/', get);
-router.post('/', post);
+router.get('/', [ limiter(2, 1000 * 60) ], get);
+router.post('/', [ validator(createUser) ], post);
 
 router.get('/:userHash', getByHash);
 router.put('/:userHash', putByHash);
