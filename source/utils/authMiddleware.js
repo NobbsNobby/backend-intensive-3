@@ -3,9 +3,8 @@
 export const authMiddleware = (correctPassword) => (req, res, next) => {
     const auth = req.headers.authorization;
     if (auth === correctPassword) {
-        return next();
+        next();
+    } else {
+        res.status(401).json({ message: 'authentication credentials are not valid' });
     }
-    res.status(400).json({
-        message: 'incorrect payload',
-    });
 };
