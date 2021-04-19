@@ -2,9 +2,10 @@ import express from 'express';
 import {get, post} from './handlers';
 import {getByHash, removeByHash, updateByHash} from './hash';
 import {getKeynoteByHash, getVideoByHash, removeKeynoteByHash, removeVideoByHash, addVideo, addKeynote} from './education';
+import {authenticate} from '../../utils';
 
 const router = express.Router();
-
+router.use(authenticate);
 router.get('/', get);
 router.post('/', post);
 
