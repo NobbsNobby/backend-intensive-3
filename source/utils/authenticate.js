@@ -1,6 +1,6 @@
 
 
-export const authMiddleware = (correctPassword) => (req, res, next) => {
+export const authenticate = (req, res, next) => {
     const auth = req.headers.authorization;
     if (auth === correctPassword) {
         next();
