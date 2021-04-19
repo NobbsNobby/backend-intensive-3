@@ -1,8 +1,17 @@
+import jwt from 'jsonwebtoken';
+import { promisify } from 'util';
+import {getPassword} from '../../utils/env/getPassword';
 
-export const login = (req, res) => {
+
+const sign = promisify(jwt.sign);
+const key = getPassword();
+
+export const login = async (req, res) => {
     try {
-        if (req.body.email) {
-            req.session.email = req.body.email;
+        if (req.body.email && req.body.name) {
+            const token = await sign(req.body, key, {expiresIn: '1m'});
+
+            res.append('x-token', token);
             res.sendStatus(204);
         } else {
             throw new Error('need email');
