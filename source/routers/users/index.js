@@ -8,12 +8,11 @@ import {createUser} from '../../schemas';
 
 
 const router = express.Router();
-router.use(authenticate);
-router.get('/', [ limiter(2, 1000 * 60) ], get);
+router.get('/', [ limiter(2, 1000 * 60), authenticate ], get);
 router.post('/', [ validator(createUser) ], post);
 
-router.get('/:userHash', getByHash);
-router.put('/:userHash', putByHash);
-router.delete('/:userHash', deleteByHash);
+router.get('/:userHash', [ authenticate ], getByHash);
+router.put('/:userHash', [ authenticate ], putByHash);
+router.delete('/:userHash', [ authenticate ], deleteByHash);
 
 export {router as users};

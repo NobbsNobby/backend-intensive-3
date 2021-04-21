@@ -1,7 +1,7 @@
 // Core
 import express from 'express';
 import bodyParser from 'body-parser';
-import {loggerMiddleware} from './utils/logger';
+import {loggerMiddleware} from './utils/loggers/logger';
 import passport from 'passport';
 // Routers
 import * as routers from './routers';
