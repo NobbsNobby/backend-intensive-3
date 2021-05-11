@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "main": "index.js",
     "scripts": {
-        "start": "SET DEBUG=server:*,router:* & nodemon",
+        "start": "SET DEBUG=server:*,router:*,db & nodemon",
         "swagger-autogen": "node source/swagger.js",
         "start:prod": "NODE_ENV='production' PORT=3000 node -r @babel/register ./source/index.js",
         "build": "NODE_ENV=production node -r @babel/register './node_modules/.bin/webpack' --config=./webpack/webpack.config.js",
