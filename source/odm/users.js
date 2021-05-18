@@ -36,8 +36,11 @@ const userSchema = new mongoose.Schema(
             unique: true,
         },
         disabled: Boolean,
-        created:  Date,
-        modified: Date,
+    }, {
+        timestamps: {
+            createdAt: 'created',
+            updatedAt: 'modified',
+        },
     },
 );
 const users = mongoose.model('users', userSchema);

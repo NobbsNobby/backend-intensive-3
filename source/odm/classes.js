@@ -25,9 +25,12 @@ const classSchema = new mongoose.Schema({
         started: Date,
         closed:  Date,
     },
-    order:    Number,
-    created:  Date,
-    modified: Date,
+    order: Number,
+}, {
+    timestamps: {
+        createdAt: 'created',
+        updatedAt: 'modified',
+    },
 });
 
 const classes = mongoose.model('classes', classSchema);

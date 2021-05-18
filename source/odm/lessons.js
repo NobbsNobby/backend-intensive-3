@@ -28,8 +28,11 @@ const lessonSchema = new mongoose.Schema(
                 },
             ],
         },
-        created:  Date,
-        modified: Date,
+    }, {
+        timestamps: {
+            createdAt: 'created',
+            updatedAt: 'modified',
+        },
     },
 );
 const lessons = mongoose.model('lessons', lessonSchema);
