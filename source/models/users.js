@@ -10,4 +10,10 @@ export class Users {
 
         return data;
     }
+
+    async getAll() {
+        const data = await users.find();
+
+        return data;
+    }
 }

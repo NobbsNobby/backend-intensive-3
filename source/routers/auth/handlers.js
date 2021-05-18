@@ -9,7 +9,7 @@ const key = getPassword();
 export const login = async (req, res) => {
     try {
         if (req.body.email && req.body.name) {
-            const token = await sign(req.body, key, {expiresIn: '1m'});
+            const token = await sign(req.body, key, {expiresIn: '5m'});
 
             res.append('x-token', token);
             res.sendStatus(204);

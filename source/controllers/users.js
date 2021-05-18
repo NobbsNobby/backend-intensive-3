@@ -13,4 +13,10 @@ export class Users {
 
         return data;
     }
+
+    async getAll() {
+        const data = await this.model.users.getAll();
+
+        return data;
+    }
 }
