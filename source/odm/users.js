@@ -1,7 +1,14 @@
 import mongoose from 'mongoose';
+import {v4} from 'uuid';
 
 const userSchema = new mongoose.Schema(
     {
+        hash: {
+            type:     String,
+            required: true,
+            unique:   true,
+            default:  () => v4(),
+        },
         name: {
             first: String,
             last:  String,
@@ -30,11 +37,7 @@ const userSchema = new mongoose.Schema(
             github:   String,
             skype:    String,
         },
-        notes: String,
-        hash:  {
-            type:   String,
-            unique: true,
-        },
+        notes:    String,
         disabled: Boolean,
     }, {
         timestamps: {

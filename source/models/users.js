@@ -12,8 +12,18 @@ export class Users {
     }
 
     async getAll() {
-        const data = await users.find();
+        const { page = 1, size = 10 } = this.data;
 
-        return data;
+        const pagesCount = await users.estimatedDocumentCount();
+        const data = await users
+            .find({})
+            .skip(Number(size) * (page - 1))
+            .limit(Number(size))
+            .lean();
+
+        return {
+            pagesCount: Math.ceil(pagesCount / size),
+            data,
+        };
     }
 }

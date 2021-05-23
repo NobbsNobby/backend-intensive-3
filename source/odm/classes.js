@@ -1,11 +1,14 @@
 import mongoose from 'mongoose';
+import {v4} from 'uuid';
 
 const classSchema = new mongoose.Schema({
     title:       String,
     description: String,
     hash:        {
-        type:   String,
-        unique: true,
+        type:     String,
+        required: true,
+        unique:   true,
+        default:  () => v4(),
     },
     students: [
         {

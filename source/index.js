@@ -1,6 +1,8 @@
 // Instruments
 import { app } from './server';
 import { getPort } from './utils';
+// create fake data
+// import './utils/faker';
 
 const PORT = getPort();
 

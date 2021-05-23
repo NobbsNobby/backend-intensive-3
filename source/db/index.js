@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import dg from 'debug';
-import {getDatabase} from "../utils/env";
+import {getDatabase} from '../utils/env';
 
 const debug = dg('db');
 

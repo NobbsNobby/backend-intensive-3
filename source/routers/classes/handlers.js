@@ -1,8 +1,10 @@
-export const get = (req, res) => {
+import {Classes} from '../../controllers';
+
+export const get = async ({query: {size, page}}, res) => {
     try {
-        res.status(200).json({
-            data: [],
-        });
+        const user = new Classes({size, page});
+        const data = await user.getAll();
+        res.status(200).json(data);
     } catch (error) {
         res.status(400).json({
             message: error.message,
@@ -10,11 +12,11 @@ export const get = (req, res) => {
     }
 };
 
-export const post = (req, res) => {
+export const post = async (req, res) => {
     try {
-        res.status(201).json({
-            hash: '',
-        });
+        const classes = new Classes(req.body);
+        const data = await classes.create();
+        res.status(201).json(data);
     } catch (error) {
         res.status(400).json({
             message: error.message,

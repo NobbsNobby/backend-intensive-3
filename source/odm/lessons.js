@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import {v4} from 'uuid';
 
 const lessonSchema = new mongoose.Schema(
     {
@@ -6,8 +7,10 @@ const lessonSchema = new mongoose.Schema(
         description: String,
         order:       Number,
         hash:        {
-            type:   String,
-            unique: true,
+            type:     String,
+            required: true,
+            unique:   true,
+            default:  () => v4(),
         },
         availability: [ String ],
         content:      {

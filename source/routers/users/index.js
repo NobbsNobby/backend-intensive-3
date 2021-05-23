@@ -2,13 +2,13 @@ import express from 'express';
 import {get, post} from './handlers';
 import {getByHash, putByHash, deleteByHash} from './hash';
 //utils
-import {authenticate, limiter, validator} from '../../utils';
+import {authenticate, validator} from '../../utils';
 // Schemas
 import {createUser} from '../../schemas';
 
 
 const router = express.Router();
-router.get('/', [ limiter(2, 1000 * 60), authenticate ], get);
+router.get('/', [ authenticate ], get);
 // router.post('/', [ validator(createUser) ], post);
 router.post('/', post);
 
