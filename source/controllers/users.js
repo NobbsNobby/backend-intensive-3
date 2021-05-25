@@ -19,4 +19,22 @@ export class Users {
 
         return data;
     }
+
+    async getByHash () {
+        const data = await this.model.users.getByHash();
+
+        return data;
+    }
+
+    async updateByHash () {
+        const data = await this.model.users.updateByHash();
+
+        return data;
+    }
+
+    async deleteByHash () {
+        const data = await this.model.users.deleteByHash();
+
+        return data;
+    }
 }

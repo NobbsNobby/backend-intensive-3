@@ -26,4 +26,31 @@ export class Classes {
             data,
         };
     }
+
+    async getByHash () {
+        const { hash } = this.data;
+        const data = await classes
+            .find({hash})
+            .lean();
+
+        return data;
+    }
+
+    async updateByHash () {
+        const { hash, payload } = this.data;
+        const data = await classes
+            .findOneAndUpdate({hash}, payload, {new: true})
+            .lean();
+
+        return data;
+    }
+
+    async deleteByHash () {
+        const { hash } = this.data;
+        const data = await classes
+            .findOneAndDelete({hash})
+            .lean();
+
+        return data;
+    }
 }

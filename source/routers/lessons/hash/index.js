@@ -1,8 +1,11 @@
-export const getByHash = (req, res) => {
+import {Lessons} from '../../../controllers';
+
+export const getByHash = async (req, res) => {
     try {
-        res.status(200).json({
-            data: {},
-        });
+        const {lessonHash} = req.params;
+        const model = new Lessons({hash: lessonHash});
+        const data = await model.getByHash();
+        res.status(200).json(data);
     } catch (error) {
         res.status(400).json({
             message: error.message,
@@ -10,11 +13,12 @@ export const getByHash = (req, res) => {
     }
 };
 
-export const updateByHash = (req, res) => {
+export const updateByHash = async (req, res) => {
     try {
-        res.status(200).json({
-            hash: '',
-        });
+        const {lessonHash} = req.params;
+        const model = new Lessons({hash: lessonHash, payload: req.body});
+        const data = await model.updateByHash();
+        res.status(200).json(data);
     } catch (error) {
         res.status(400).json({
             message: error.message,
@@ -22,9 +26,12 @@ export const updateByHash = (req, res) => {
     }
 };
 
-export const removeByHash = (req, res) => {
+export const deleteByHash = async (req, res) => {
     try {
-        res.sendStatus(204);
+        const {lessonHash} = req.params;
+        const model = new Lessons({hash: lessonHash});
+        const data = await model.deleteByHash();
+        res.status(204).json(data);
     } catch (error) {
         res.status(400).json({
             message: error.message,

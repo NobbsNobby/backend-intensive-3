@@ -1,6 +1,6 @@
 import express from 'express';
 import {get, post} from './handlers';
-import {getByHash, removeByHash, updateByHash} from './hash';
+import {getByHash, deleteByHash, updateByHash} from './hash';
 import {getKeynoteByHash, getVideoByHash, removeKeynoteByHash, removeVideoByHash, addVideo, addKeynote} from './education';
 import {authenticate} from '../../utils';
 
@@ -11,7 +11,7 @@ router.post('/', [ authenticate ], post);
 
 router.get('/:lessonHash', [ authenticate ], getByHash);
 router.put('/:lessonHash', [ authenticate ], updateByHash);
-router.delete('/:lessonHash', [ authenticate ], removeByHash);
+router.delete('/:lessonHash', [ authenticate ], deleteByHash);
 
 router.post('/:lessonHash/videos', [ authenticate ], addVideo);
 router.get('/:lessonHash/videos/:videoHash', [ authenticate ], getVideoByHash);

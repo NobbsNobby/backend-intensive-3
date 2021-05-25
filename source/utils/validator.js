@@ -19,7 +19,17 @@ export const validator = (schema) => (req, res, next) => {
     console.log(
         validate.errors,
     );
-    const errors = validate.errors.map(({ dataPath, message }) => `${dataPath.slice(1)} ${message}`).join(', ');
+    const errors = validate.errors.map(({ instancePath, message, keyword, params }) => {
+        const path = instancePath ? instancePath.slice(1) : 'schema';
+        switch (keyword) {
+            case 'required':
+                return `${path} ${message}`;
+            case 'const':
+                return `${path} ${message} '${params.allowedValue}'`;
+            default:
+                return `${path} ${message}`;
+        }
+    });
 
     res.status(400).json({ message: errors });
 };

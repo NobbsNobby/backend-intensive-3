@@ -26,4 +26,31 @@ export class Users {
             data,
         };
     }
+
+    async getByHash () {
+        const { hash } = this.data;
+        const data = await users
+            .find({hash})
+            .lean();
+
+        return data;
+    }
+
+    async updateByHash () {
+        const { hash, payload } = this.data;
+        const data = await users
+            .findOneAndUpdate({hash}, payload, {new: true})
+            .lean();
+
+        return data;
+    }
+
+    async deleteByHash () {
+        const { hash } = this.data;
+        const data = await users
+            .findOneAndDelete({hash})
+            .lean();
+
+        return data;
+    }
 }

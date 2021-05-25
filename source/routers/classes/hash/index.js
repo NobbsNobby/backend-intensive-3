@@ -1,8 +1,11 @@
-export const getHash = (req, res) => {
+import {Classes} from '../../../controllers';
+
+export const getByHash = async (req, res) => {
     try {
-        res.status(200).json({
-            data: {},
-        });
+        const {classHash} = req.params;
+        const model = new Classes({hash: classHash});
+        const data = await model.getByHash();
+        res.status(200).json(data);
     } catch (error) {
         res.status(400).json({
             message: error.message,
@@ -10,11 +13,12 @@ export const getHash = (req, res) => {
     }
 };
 
-export const putHash = (req, res) => {
+export const updateByHash = async (req, res) => {
     try {
-        res.status(200).json({
-            hash: '',
-        });
+        const {classHash} = req.params;
+        const model = new Classes({hash: classHash, payload: req.body});
+        const data = await model.updateByHash();
+        res.status(200).json(data);
     } catch (error) {
         res.status(400).json({
             message: error.message,
@@ -22,9 +26,12 @@ export const putHash = (req, res) => {
     }
 };
 
-export const deleteHash = (req, res) => {
+export const deleteByHash = async (req, res) => {
     try {
-        res.sendStatus(204);
+        const {classHash} = req.params;
+        const model = new Classes({hash: classHash});
+        const data = await model.deleteByHash();
+        res.status(204).json(data);
     } catch (error) {
         res.status(400).json({
             message: error.message,
