@@ -10,12 +10,21 @@ const userSchema = new mongoose.Schema(
             default:  () => v4(),
         },
         name: {
-            first: String,
-            last:  String,
+            first: {
+                type:     String,
+                required: true,
+            },
+            last: {
+                type:     String,
+                required: true,
+            },
         },
         phones: [
             {
-                phone:   String,
+                phone: {
+                    type:     String,
+                    required: true,
+                },
                 primary: Boolean,
             },
         ],
@@ -28,10 +37,24 @@ const userSchema = new mongoose.Schema(
                 primary: Boolean,
             },
         ],
-        password: String,
-        sex:      String,
-        roles:    [ String ],
-        social:   {
+        password: {
+            type:     String,
+            select:   false,
+            required: true,
+        },
+        sex: {
+            type:     String,
+            enum:     [ 'm', 'f' ],
+            required: true,
+        },
+        roles: [
+            {
+                type:    String,
+                default: 'newbie',
+                enum:    [ 'newbie', 'student', 'teacher' ],
+            },
+        ],
+        social: {
             facebook: String,
             linkedin: String,
             github:   String,

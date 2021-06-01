@@ -1,6 +1,20 @@
 import mongoose from 'mongoose';
 import {v4} from 'uuid';
 
+const contentSchema = new mongoose.Schema(
+    {
+        title: String,
+        order: Number,
+        uri:   String,
+        hash:  {
+            type:    String,
+            unique:  true,
+            default: () => v4(),
+        },
+    },
+    { _id: false },
+);
+
 const lessonSchema = new mongoose.Schema(
     {
         title:       String,
@@ -14,22 +28,8 @@ const lessonSchema = new mongoose.Schema(
         },
         availability: [ String ],
         content:      {
-            videos: [
-                {
-                    hash:  String,
-                    title: String,
-                    order: Number,
-                    uri:   String,
-                },
-            ],
-            keynotes: [
-                {
-                    hash:  String,
-                    title: String,
-                    order: Number,
-                    uri:   String,
-                },
-            ],
+            videos:   [ contentSchema ],
+            keynotes: [ contentSchema ],
         },
     }, {
         timestamps: {
